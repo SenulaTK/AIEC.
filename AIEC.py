@@ -17,6 +17,13 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 from fpdf import FPDF
 
+import sys
+from pathlib import Path
+# Add project root directory to sys.path for Streamlit Cloud module imports
+ROOT_DIR = Path(__file__).resolve().parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from client_adapter import is_backend_available, regenerate_question_api, grade_exam_api
 from backend.app.services.hybrid_grader import HybridGrader
 from backend.app.services.gemini_service import GeminiService
